@@ -1,0 +1,79 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.Nav-Bar{
+  height: 50px;
+  width: 100%;
+  background-color: blueviolet;
+}
+.Search-Box{
+  text-align: center;
+}
+.Search-Box input{
+  height: 30px;
+  margin-top: 7px;
+}
+.Search-Box button{
+  height: 30px;
+  margin-top: 7px;
+}
+.movie-list-box{
+  height: 200px;
+  width: 70%;
+  display: flex;
+  background-color: aqua;
+  margin-left: 10rem;
+  margin-top: 1rem;
+  justify-content: space-between;
+}
+.image-div img{
+  height: 100%;
+}
+.title-box{
+  margin-left: 20px;
+}
+.title-box p{
+  font-size: 1rem;
+  
+}
+.title-box p span{
+  font-size: 1rem;
+  font-weight: bold;
+  margin-right: 10px;
+}
+.list-filter{
+  margin-left: 10rem;
+  margin-top: 2rem;
+}
+.list-filter button{
+  width: 15rem;
+  height: 3rem;
+  margin-right: 1rem;
+}
+.fav-box{
+  margin-left: 450px;
+  margin-top: 8%;
+  margin-right: 10px;
+  
+}
+
+.fav-box button{
+  height: 2rem;
+  width: 7rem;
+  background-color: black;
+  color: wheat;
+  border: none;
+}
+.fav-box button:hover{
+  background-color: blueviolet;
+}
