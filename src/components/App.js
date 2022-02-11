@@ -2,22 +2,21 @@ import react from 'react';
 import {data} from '../data';
 import NavBar from './NavBar';
 import MovieCart from './MovieCart';
+import {moviesList} from '../actions'
 class App extends react.Component  {
   
   componentDidMount(){
-    const store = this.props.store;
+    const {store} = this.props;
     store.subscribe(()=>{
       console.log('UPDATED');
       this.forceUpdate();
     })
-    store.dispatch({
-      type:'ADD_MOVIES',
-      movies: data
-    })
+    store.dispatch(moviesList(data))
     console.log("STORE AT APP",store.getState())
   }
   render(){
-    const movies = this.props.store.getState()
+    // const movies = this.props.store.getState()[]= {list,fav}
+    const {movies} = this.props.store.getState()
     return (
       <div className="App">
         <NavBar/>
