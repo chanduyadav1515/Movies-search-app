@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import ReactDOM from 'react-dom';
 import { createStore,applyMiddleware } from 'redux';
 
@@ -23,6 +23,7 @@ const logger = ({dispatch,getState})=>(next)=>(action)=>{
 }
 const store = createStore(rootList,applyMiddleware(logger,thunk));
 
+export const storeContext = createContext();
 // console.log("store:",store)
 // console.log("BEFORE STATE:",store.getState())
 
@@ -32,10 +33,29 @@ const store = createStore(rootList,applyMiddleware(logger,thunk));
 // })
 // console.log("AFTER STATE:",store.getState())
 
+class Provider extends React.Component{ 
+  render(){
+    const {store} = this.props;
+    return <storeContext.Provider value={store}>
+        {this.props.children}
+      </storeContext.Provider>
+  }
+}
+
 ReactDOM.render(
   <React.StrictMode>
-    <App store = {store} />
+    <Provider store={store}>
+    <App store = {store}/>
+    </Provider>  
   </React.StrictMode>,
   document.getElementById('root')
 );
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <storeContext.Provider value={store}>
+//     <App store = {store} />
+//     </storeContext.Provider>  
+//   </React.StrictMode>,
+//   document.getElementById('root')
+// );
 

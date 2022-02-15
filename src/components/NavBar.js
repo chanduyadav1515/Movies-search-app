@@ -1,6 +1,7 @@
 import React from 'react';
 import {data} from '../data'
 import {dataMovies,showBox,addMovie, apiCall} from '../actions'
+import { storeContext } from '..';
 
 class NavBar extends React.Component {
     constructor(props){
@@ -44,4 +45,15 @@ class NavBar extends React.Component {
     }
 }
 
-export default NavBar;
+class NavBarWrapper extends React.Component{
+    render(){
+        return(
+            <storeContext.Consumer>
+        {(store)=><NavBar dispatch = {store.dispatch} searchlist={store.getState().searchlist} movies={this.props.movies}/>}
+    </storeContext.Consumer>
+
+        )
+    }   
+}
+
+export default NavBarWrapper;

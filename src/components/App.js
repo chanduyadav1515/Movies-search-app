@@ -3,6 +3,8 @@ import {data} from '../data';
 import NavBar from './NavBar';
 import MovieCart from './MovieCart';
 import {moviesList , showFav} from '../actions'
+import React from 'react';
+import { storeContext } from '../index';
 class App extends react.Component  {
   
   componentDidMount(){
@@ -40,8 +42,7 @@ class App extends react.Component  {
       <div className="App">
         <NavBar 
                 movies = {movies}
-                searchlist = {searchlist}
-                dispatch = {this.props.store.dispatch}/>
+                searchlist = {searchlist}/>
         <div className="main">
           <div className='list-filter'>
             <button className={`${showFav ? '' :'highlightButton'}`} onClick ={()=>this.isshowFav(false)}>Movies</button>
@@ -64,4 +65,16 @@ class App extends react.Component  {
   }
 }
 
-export default App;
+class AppWrapper extends React.Component{
+
+  render(){
+    return(
+    <storeContext.Consumer>
+      {(store)=><App store={store} />}
+    </storeContext.Consumer>
+
+    )
+  }
+}
+
+export default AppWrapper;
