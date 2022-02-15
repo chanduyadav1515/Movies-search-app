@@ -1,12 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { createStore,applyMiddleware } from 'redux';
 
 import './index.css';
 import App from './components/App';
-import movies from './reducer';
+import rootList from './reducer'
+import thunk from 'redux-thunk';
 
-const store = createStore(movies);
+// const logger = function({dispatch,getState}){
+//   return function(next){
+//     return function(action){
+//       console.log(action.type);
+//       next(action);
+//     }
+//   }
+// }
+
+const logger = ({dispatch,getState})=>(next)=>(action)=>{
+  console.log(action.type);
+      next(action);
+  
+}
+const store = createStore(rootList,applyMiddleware(logger,thunk));
 
 // console.log("store:",store)
 // console.log("BEFORE STATE:",store.getState())

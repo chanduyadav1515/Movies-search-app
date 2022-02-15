@@ -1,7 +1,17 @@
 import React from 'react';
+import {favList, RemoveFav} from '../actions'
 class MovieCart extends React.Component {
+
+    addFav=()=>{
+        const {movie} = this.props;
+        this.props.dispatch(favList(movie))
+    }
+    removeFav=()=>{
+        const {movie} = this.props;
+        this.props.dispatch(RemoveFav(movie))
+    }
     render(){
-        const {movie} = this.props
+        const {movie,isFavourite} = this.props
         return (
             <div className="movie-list-box">
                 <div className='image-div'>
@@ -14,7 +24,9 @@ class MovieCart extends React.Component {
                     <p><span>imdbRating:</span>{movie.imdbRating}</p>
                 </div>
                 <div className='fav-box'>
-                    <button>Favourite</button>
+                    {
+                        isFavourite?<button className='unFav' onClick={this.removeFav}>UnFavourite</button>:<button className='Fav' onClick={this.addFav}>Favourite</button>
+                    }
                 </div>
             </div>
         );

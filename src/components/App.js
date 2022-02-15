@@ -2,7 +2,7 @@ import react from 'react';
 import {data} from '../data';
 import NavBar from './NavBar';
 import MovieCart from './MovieCart';
-import {moviesList} from '../actions'
+import {moviesList , showFav} from '../actions'
 class App extends react.Component  {
   
   componentDidMount(){
@@ -14,23 +14,50 @@ class App extends react.Component  {
     store.dispatch(moviesList(data))
     console.log("STORE AT APP",store.getState())
   }
+  isFavourite=(movie)=>{
+    const {movies,searchlist} = this.props.store.getState()
+
+    const index = movies.favourite.indexOf(movie);
+    if(index !== -1)
+    {
+      return true
+    }
+    return false
+  }
+  isshowFav=(show)=>{
+   
+    this.props.store.dispatch(showFav(show))
+    console.log(show)
+  }
   render(){
     // const movies = this.props.store.getState()[]= {list,fav}
-    const {movies} = this.props.store.getState()
+    console.log("STATE",this.props.store.getState())
+    const {movies,searchlist} = this.props.store.getState()
+    console.log("movies object:",movies)
+    const {list,favourite,showFav} = movies
+    const showDisplay = showFav ? favourite : list
     return (
       <div className="App">
-        <NavBar/>
+        <NavBar 
+                movies = {movies}
+                searchlist = {searchlist}
+                dispatch = {this.props.store.dispatch}/>
         <div className="main">
           <div className='list-filter'>
-            <button>Movies</button>
-            <button>Favourites</button>
+            <button className={`${showFav ? '' :'highlightButton'}`} onClick ={()=>this.isshowFav(false)}>Movies</button>
+            <button className={`${showFav?'highlightButton':''}`} onClick={()=>this.isshowFav(true)}>Favourites</button>
           </div>
           <div className="list">
-            {movies.map((movie,index)=>(
-              <MovieCart movie = {movie}
-                          key = {index} />
+            {showDisplay.map((movie,index)=>(
+              < MovieCart 
+                movie = {movie}
+                key = {`movies-${index}`}
+                dispatch = {this.props.store.dispatch} 
+                isFavourite = {this.isFavourite(movie)}
+              />
             ))}
           </div>
+          {showDisplay.length===0?<div>NO list to show</div>:''}
         </div>
       </div>
     );

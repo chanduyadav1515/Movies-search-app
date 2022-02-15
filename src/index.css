@@ -21,12 +21,55 @@ code {
 }
 .Search-Box input{
   height: 30px;
+  width: 300px;
   margin-top: 7px;
+  border-right: none;
+  border: 2px solid black;
 }
 .Search-Box button{
-  height: 30px;
+  height: 36px;
+  width: 100px;
   margin-top: 7px;
+  margin-left: -2px;
+  border: 2px solid black;
+  border-left: none;
 }
+.Search-Box button:hover{
+  background-color: greenyellow;
+}
+.Search-list{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: white;
+  margin-top: 4px;
+  margin-left: 35%;
+  height: 100px;
+  text-align: center;
+  width: 400px;
+  position: absolute;
+  z-index: 100;
+}
+.Search-list img{
+  height: 90%;
+  width: 130%;
+  margin-left: -25%;
+  margin-top: 5px;
+}
+.search-movie-info{
+  margin-top: 3%;
+  margin-left: -20%;
+}
+.search-movie-info span{
+    font-weight: 800;
+}
+.search-movie-info button{
+  height: 35%;
+  margin-top: 5%;
+  background-color: aqua;
+  border: 2px solid aqua;
+}
+/* .................................................. */
 .movie-list-box{
   height: 200px;
   width: 70%;
@@ -67,13 +110,24 @@ code {
   
 }
 
-.fav-box button{
+.Fav{
   height: 2rem;
   width: 7rem;
   background-color: black;
   color: wheat;
   border: none;
 }
+.unFav{
+  height: 2rem;
+  width: 7rem;
+  background-color: red;
+  color: white;
+  border: none;
+}
 .fav-box button:hover{
-  background-color: blueviolet;
+  opacity: 0.5;
+}
+.highlightButton{
+  background-color: black;
+  color: white;
 }
