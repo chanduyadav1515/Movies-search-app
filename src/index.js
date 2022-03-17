@@ -1,4 +1,5 @@
 import React, { createContext } from 'react';
+import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
 import { createStore,applyMiddleware } from 'redux';
 
@@ -33,14 +34,14 @@ export const storeContext = createContext();
 // })
 // console.log("AFTER STATE:",store.getState())
 
-class Provider extends React.Component{ 
-  render(){
-    const {store} = this.props;
-    return <storeContext.Provider value={store}>
-        {this.props.children}
-      </storeContext.Provider>
-  }
-}
+// class Provider extends React.Component{ 
+//   render(){
+//     const {store} = this.props;
+//     return <storeContext.Provider value={store}>
+//         {this.props.children}
+//       </storeContext.Provider>
+//   }
+// }
 
 ReactDOM.render(
   <React.StrictMode>

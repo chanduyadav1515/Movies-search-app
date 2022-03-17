@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux'
 import {data} from '../data'
 import {dataMovies,showBox,addMovie, apiCall} from '../actions'
 import { storeContext } from '..';
@@ -45,15 +46,26 @@ class NavBar extends React.Component {
     }
 }
 
-class NavBarWrapper extends React.Component{
-    render(){
-        return(
-            <storeContext.Consumer>
-        {(store)=><NavBar dispatch = {store.dispatch} searchlist={store.getState().searchlist} movies={this.props.movies}/>}
-    </storeContext.Consumer>
+// class NavBarWrapper extends React.Component{
+//     render(){
+//         return(
+//             <storeContext.Consumer>
+//         {(store)=><NavBar dispatch = {store.dispatch} searchlist={store.getState().searchlist} movies={this.props.movies}/>}
+//     </storeContext.Consumer>
 
-        )
-    }   
-}
+//         )
+//     }   
+// }
 
-export default NavBarWrapper;
+// export default NavBarWrapper;
+
+function callBack(state){
+    return{
+      movies:state.movies,
+      search:state.movies
+    }
+  }
+  
+  const connectComponents = connect(callBack)(NavBar);
+  
+  export default connectComponents;

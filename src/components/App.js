@@ -1,4 +1,5 @@
 import react from 'react';
+import {connect} from 'react-redux'
 import {data} from '../data';
 import NavBar from './NavBar';
 import MovieCart from './MovieCart';
@@ -65,16 +66,26 @@ class App extends react.Component  {
   }
 }
 
-class AppWrapper extends React.Component{
+// class AppWrapper extends React.Component{
 
-  render(){
-    return(
-    <storeContext.Consumer>
-      {(store)=><App store={store} />}
-    </storeContext.Consumer>
+//   render(){
+//     return(
+//     <storeContext.Consumer>
+//       {(store)=><App store={store} />}
+//     </storeContext.Consumer>
 
-    )
+//     )
+//   }
+// }
+
+// export default AppWrapper;
+function callBack(state){
+  return{
+    movies:state.movies,
+    search:state.movies
   }
 }
 
-export default AppWrapper;
+const connectComponents = connect(callBack)(App);
+
+export default connectComponents;
